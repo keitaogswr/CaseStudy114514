@@ -11,41 +11,23 @@ public class EnemyPattern
     public virtual void ChangePattern(EnemyController enemy) { }    // 状態遷移
 }
 
-// エネミーが画面外から初期位置まで移動する
+// エネミーが生成位置から反対側まで移動する
 public class EnemyPatternStart : EnemyPattern
 {
+    Rigidbody2D rigidbody;
+
     public override void Init(EnemyController enemy)
     {
-        // 初期位置に移動
-        enemy.transform.DOMove(enemy.NextPoint, enemy.StartMoveTime).OnComplete(() => { ChangePattern(enemy); });
+        rigidbody = enemy.GetComponent<Rigidbody2D>();
+
+        if (enemy.transform.position.x > 0) rigidbody.velocity = new Vector2(-2, 0);
+        if (enemy.transform.position.x < 0) rigidbody.velocity = new Vector2(2, 0);
     }
 
     public override void ChangePattern(EnemyController enemy)
     {
-        enemy.ChangeEnemyPattern(new EnemyPatternNormal());
+        //enemy.ChangeEnemyPattern(new EnemyPatternNormal());
         enemy.EnemyPattern.Init(enemy);
-    }
-}
-
-// エネミーが初期位置に到達したら通常の動きをする
-public class EnemyPatternNormal : EnemyPattern
-{
-    public override void Init(EnemyController enemy)
-    {
-        // 反復運動
-        enemy.transform.DOLocalMoveX(-2, 1).SetRelative().SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
-    }
-
-    public override void Update(EnemyController enemy)
-    {
-        
-    }
-
-    public override void ChangePattern(EnemyController enemy)
-    {
-        enemy.ChangeEnemyPattern(new EnemyPatternDiffusion());
-        enemy.EnemyPattern.Init(enemy);
-        enemy.ChangeEnemyBulletPattern(new EnemyBulletPatternFirst());
     }
 }
 
@@ -64,7 +46,42 @@ public class EnemyPatternDiffusion : EnemyPattern
 
     public override void ChangePattern(EnemyController enemy)
     {
-        enemy.ChangeEnemyPattern(new EnemyPatternNormal());
+        //enemy.ChangeEnemyPattern(new EnemyPatternNormal());
+        enemy.EnemyPattern.Init(enemy);
+    }
+}
+
+// ボスの初期移動パターン
+public class EnemyBossPatternStart : EnemyPattern
+{
+    public override void Init(EnemyController enemy)
+    {
+        // 初期位置に移動
+        enemy.transform.DOMove(enemy.NextPoint, enemy.StartMoveTime).OnComplete(() => { ChangePattern(enemy); });
+    }
+
+    public override void ChangePattern(EnemyController enemy)
+    {
+        enemy.ChangeEnemyPattern(new EnemyBossPatternDiffusion());
+        enemy.EnemyPattern.Init(enemy);
+    }
+}
+
+// ボスの拡散行動
+public class EnemyBossPatternDiffusion : EnemyPattern
+{
+    public override void Init(EnemyController enemy)
+    {
+        // 反復運動
+        Sequence seq = DOTween.Sequence();
+        seq.Append(enemy.transform.DOLocalMoveX(-2, 0.5f).SetRelative().SetEase(Ease.Linear));
+        seq.Append(enemy.transform.DOLocalMoveX(4, 1).SetRelative().SetEase(Ease.Linear));
+        seq.Append(enemy.transform.DOLocalMoveX(-2, 0.5f).SetRelative().SetEase(Ease.Linear));
+        seq.SetLoops(-1);
+    }
+
+    public override void ChangePattern(EnemyController enemy)
+    {
         enemy.EnemyPattern.Init(enemy);
     }
 }
