@@ -15,53 +15,32 @@ public class UIDignity : MonoBehaviour {
 
 	// public変数
 	public Image		m_GaugeImage;	// 画像：ゲージ
-	public float		m_AnimTime;		// アニメーション時間
 
 	// private変数
-	private float		m_Value;		// 人権量
+	private Player		m_Player;		// プレイヤー
 
 	//=========================================================================
 	// 初期化処理
 	//=========================================================================
 	void Start () {
-		
-		// 人権初期化
-		m_Value = 1.0f;
-		m_GaugeImage.fillAmount = m_Value;
+
+		// ゲージ
+		m_GaugeImage.fillAmount = 1.0f;
+
+		// プレイヤー探索
+		m_Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 	}
 	
 	//=========================================================================
 	// 更新処理
 	//=========================================================================
-	void Update () {
+	void FixedUpdate () {
+
+		// プレイヤーの体力参照
+		m_GaugeImage.fillAmount = m_Player.GetDignity();
 		
-	}
-
-	//=========================================================================
-	// 増減処理
-	//=========================================================================
-	public void AddValue(float inAdd)
-	{
-		// 加算
-		m_Value += inAdd;
-
-		// 例外処理
-		if		(m_Value >= 1) m_Value = 1;
-		else if	(m_Value <= 0) m_Value = 0;
-
-		// アニメーション：ゲージ増減
-		DOTween.To(
-			() => m_GaugeImage.fillAmount,
-			Temp => m_GaugeImage.fillAmount = Temp,
-			m_Value,								// 最終的な値
-			m_AnimTime								// アニメーション時間
-		).OnComplete(
-			() =>
-			{ 
-				ChangeColor();
-			}
-		);
-
+		// カラー更新
+		ChangeColor();
 	}
 
 	//=========================================================================
