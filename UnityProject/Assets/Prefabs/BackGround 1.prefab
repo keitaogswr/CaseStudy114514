@@ -111,3 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   render: {fileID: 23413267835532258}
   speed: 0.12
+  fadeSpeed: 0.5
+  waitTime: 1.5
+  finalFloorMaterial: {fileID: 2100000, guid: e9c6f605abb08a542b4db7e2b227eff9, type: 2}
+  isFinalFloor: 0
