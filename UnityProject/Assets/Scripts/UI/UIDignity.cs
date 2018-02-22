@@ -14,21 +14,17 @@ using DG.Tweening;
 public class UIDignity : MonoBehaviour {
 
 	// public変数
-	public GameObject	m_GaugeObj;		// オブジェクト：ゲージ
+	public Image		m_GaugeImage;	// 画像：ゲージ
 	public float		m_AnimTime;		// アニメーション時間
 
 	// private変数
 	private float		m_Value;		// 人権量
-	private Image		m_GaugeImage;	// 画像：ゲージ
 
 	//=========================================================================
 	// 初期化処理
 	//=========================================================================
 	void Start () {
 		
-		// コンポーネント取得：画像
-		m_GaugeImage = m_GaugeObj.GetComponent<Image>();
-
 		// 人権初期化
 		m_Value = 1.0f;
 		m_GaugeImage.fillAmount = m_Value;
@@ -44,7 +40,7 @@ public class UIDignity : MonoBehaviour {
 	//=========================================================================
 	// 増減処理
 	//=========================================================================
-	void AddValue(float inAdd)
+	public void AddValue(float inAdd)
 	{
 		// 加算
 		m_Value += inAdd;

@@ -19,9 +19,12 @@ public class Player : MonoBehaviour {
 	private float LOW_SPEED;
 
 	// public変数
+	public Bullet			m_BulletPrefab;			// プレハブ：弾
+	public UIHeater			m_UIHeatObj;			// オブジェクト：UIヒートゲージ
 
 	// private変数
-	private Rigidbody2D		m_RB;					// リジッドボディー
+	[SerializeField]
+	private Rigidbody2D		m_RB;					// リジッドボディ：プレイヤー
 
 	private float			m_MoveVertical;			// 縦移動
 	private float			m_MoveHorizontal;		// 横移動
@@ -32,9 +35,6 @@ public class Player : MonoBehaviour {
 	//=========================================================================
 	void Start () {
 		
-		// コンポーネント取得：リジッドボディ―
-		m_RB = GetComponent<Rigidbody2D>();
-
 		// フラグ：オフ
 		m_LowMoveFrag = false;
 	}
@@ -100,6 +100,20 @@ public class Player : MonoBehaviour {
 		else
 		{
 			m_LowMoveFrag = false;
+		}
+
+		// 弾発射
+		if(Input.GetKeyDown(KeyCode.Z))
+		{
+			// ヒートゲージが溜まっていた場合
+			if(m_UIHeatObj.GetMaxFrag())
+			{
+				Bullet BulletObj = Instantiate(m_BulletPrefab);
+				BulletObj.Shoot(new Vector2(0, 1), gameObject);
+
+				// ヒートゲージ初期化
+				m_UIHeatObj.AddValue(-1);
+			}
 		}
 	}
 }
