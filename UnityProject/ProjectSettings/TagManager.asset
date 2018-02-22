@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - PlayerBullet
+  - MP4Bullet
+  - Enemy
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -19,7 +23,7 @@ TagManager:
   - PlayerBullet
   - MP4Bullet
   - Background
-  - 
+  - Boss
   - 
   - 
   - 
