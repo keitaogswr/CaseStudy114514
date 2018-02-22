@@ -93,7 +93,6 @@ MonoBehaviour:
   LOW_SPEED: 8
   m_BulletPrefab: {fileID: 114619092829173622, guid: b87772f18e2a454409f3f8ab9af8a9e4,
     type: 2}
-  m_UIHeatObj: {fileID: 0}
   m_RB: {fileID: 50125429514510650}
 --- !u!212 &212466795571414580
 SpriteRenderer:

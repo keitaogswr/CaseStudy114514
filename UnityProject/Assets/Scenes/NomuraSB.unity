@@ -456,8 +456,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_GaugeImage: {fileID: 1947812238}
-  m_AnimTime: 0.2
-  m_TimeToMax: 1.5
 --- !u!1001 &342364460
 Prefab:
   m_ObjectHideFlags: 0
@@ -497,11 +495,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 114077362904243072, guid: 10d2662bbcb45de42aa121d82fa87384,
-        type: 2}
-      propertyPath: m_UIHeatObj
-      value: 
-      objectReference: {fileID: 325485043}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 10d2662bbcb45de42aa121d82fa87384, type: 2}
   m_IsPrefabParent: 0
@@ -788,7 +781,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_GaugeImage: {fileID: 352253358}
-  m_AnimTime: 0.2
 --- !u!1 &526185237
 GameObject:
   m_ObjectHideFlags: 0

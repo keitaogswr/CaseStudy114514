@@ -20,7 +20,6 @@ public class Player : MonoBehaviour {
 
 	// public変数
 	public Bullet			m_BulletPrefab;			// プレハブ：弾
-	public UIHeater			m_UIHeatObj;			// オブジェクト：UIヒートゲージ
 
 	// private変数
 	[SerializeField]
@@ -29,14 +28,25 @@ public class Player : MonoBehaviour {
 	private float			m_MoveVertical;			// 縦移動
 	private float			m_MoveHorizontal;		// 横移動
 	private bool			m_LowMoveFrag;			// フラグ：低速移動
+	private float			m_Dignity;				// 人権
+	private float			m_Heat;					// ヒート
+	private float			m_HeatCastTime;			// ヒートのキャストタイム
+	private bool			m_ChargeFrag;			// フラグ：ヒート再チャージフラグ
 
 	//=========================================================================
 	// 初期化処理
 	//=========================================================================
 	void Start () {
+
+		// ヒート
+		m_Heat = 1.0f;
+		m_HeatCastTime = 1.5f;
+		// 人権
+		m_Dignity = 1.0f;
 		
 		// フラグ：オフ
 		m_LowMoveFrag = false;
+		m_ChargeFrag = false;
 	}
 	
 	//=========================================================================
@@ -53,6 +63,9 @@ public class Player : MonoBehaviour {
 
 		// 速度更新
 		m_RB.velocity = new Vector2(m_MoveHorizontal * TempSpeed, m_MoveVertical * TempSpeed);
+
+		// ヒートゲージ更新
+		HeatUpdate();
 	}
 
 	//=========================================================================
@@ -106,14 +119,115 @@ public class Player : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.Z))
 		{
 			// ヒートゲージが溜まっていた場合
-			if(m_UIHeatObj.GetMaxFrag())
+			if(m_Heat >= 1.0f)
 			{
 				Bullet BulletObj = Instantiate(m_BulletPrefab);
 				BulletObj.Shoot(new Vector2(0, 1), gameObject);
 
 				// ヒートゲージ初期化
-				m_UIHeatObj.AddValue(-1);
+				AddHeat(-1.0f);
 			}
 		}
 	}
+
+	//=========================================================================
+	// ヒートの更新処理
+	//=========================================================================
+	void HeatUpdate()
+	{
+		// チャージ可能
+		if(m_ChargeFrag)
+		{
+			// チャージ
+			m_Heat += 1.0f / (m_HeatCastTime * 60);
+
+			// 最大値になった場合
+			if(m_Heat >= 1)
+			{
+				m_Heat = 1;
+				m_ChargeFrag = false;
+			}
+		}
+
+	}
+
+	//=========================================================================
+	// 衝突処理
+	//=========================================================================
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		// 衝突：MP4弾
+		if(collision.gameObject.CompareTag("MP4Bullet"))
+		{
+			// 人権回復
+			AddDignity(0.05f);
+		}
+	}
+
+	//=========================================================================
+	// 人権の増減処理
+	//=========================================================================
+	public void AddDignity(float inAdd)
+	{
+		// 加算
+		float EndDignity = m_Dignity;
+		EndDignity += inAdd;
+
+		// 例外処理
+		if		(EndDignity >= 1) EndDignity = 1;
+		else if	(EndDignity <= 0) EndDignity = 0;
+
+		// アニメーション：ゲージ増減
+		DOTween.To(
+			() => m_Dignity,
+			Temp => m_Dignity = Temp,
+			EndDignity,								// 最終的な値
+			0.2f									// アニメーション時間
+		);
+	}
+
+	//=========================================================================
+	// ヒートの増減処理
+	//=========================================================================
+	void AddHeat(float inAdd)
+	{
+		// 加算
+		float EndHeat = m_Heat;
+		EndHeat += inAdd;
+
+		// 例外処理
+		if		(EndHeat >= 1) EndHeat = 1;
+		else if	(EndHeat <= 0) EndHeat = 0;
+
+		// アニメーション：ゲージ増減
+		DOTween.To(
+			() =>m_Heat,
+			Temp => m_Heat = Temp,
+			EndHeat,								// 最終的な値
+			0.2f									// アニメーション時間
+		).OnComplete(
+			()=>
+			{
+				// チャージ可能に
+				if(m_Heat <= 0) m_ChargeFrag = true;
+			}
+		);
+	}
+
+	//=========================================================================
+	// 人権の取得処理
+	//=========================================================================
+	public float GetDignity()
+	{
+		return m_Dignity;
+	}
+
+	//=========================================================================
+	// ヒートの取得処理
+	//=========================================================================
+	public float GetHeat()
+	{
+		return m_Heat;
+	}
+
 }
