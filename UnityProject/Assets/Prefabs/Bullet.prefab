@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114619092829173622}
   - component: {fileID: 50036050870943270}
   - component: {fileID: 61215648868157662}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1117745187489258}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.9445, y: -3.2531, z: 0}
+  m_LocalPosition: {x: 0, y: -8, z: 0}
   m_LocalScale: {x: 0.57454896, y: 0.58569145, z: 2.48571}
   m_Children: []
   m_Father: {fileID: 0}
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigid2D: {fileID: 50036050870943270}
-  power: 200
+  power: 1000
   life: 1.5
 --- !u!212 &212659929134553342
 SpriteRenderer:

@@ -13,12 +13,12 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - StageWall
+  - Enemy
+  - PlayerBullet
+  - MP4Bullet
+  - Background
   - 
   - 
   - 

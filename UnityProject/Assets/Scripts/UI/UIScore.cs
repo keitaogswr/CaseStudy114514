@@ -13,19 +13,15 @@ using UnityEngine.UI;
 public class UIScore : MonoBehaviour {
 
 	// public変数
-	public GameObject	m_NumObj;		// オブジェクト：得点
+	public Text			m_NumText;		// テキスト：得点
 
 	// private変数
 	private int			m_Value;		// 得点
-	private Text		m_NumText;		// テキスト：得点
 
 	//=========================================================================
 	// 初期化処理
 	//=========================================================================
 	void Start () {
-
-		// コンポーネント取得：テキスト
-		m_NumText = m_NumObj.GetComponent<Text>();
 		
 		m_Value = 0;
 		m_NumText.text = m_Value.ToString("D8");
