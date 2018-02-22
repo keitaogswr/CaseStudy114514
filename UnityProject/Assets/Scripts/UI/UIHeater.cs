@@ -14,46 +14,48 @@ using DG.Tweening;
 public class UIHeater : MonoBehaviour {
 
 	// public変数
-	public GameObject	m_GaugeObj;		// オブジェクト：ゲージ
+	public Image		m_GaugeImage;	// 画像：ゲージ
 	public float		m_AnimTime;		// アニメーション時間
 	public float		m_TimeToMax;	// ゲージが最大になるまでの時間
 
 	// private変数
 	private float		m_Value;		// ヒートゲージ
-	private Image		m_GaugeImage;	// 画像：ゲージ
 	private bool		m_MaxFrag;		// フラグ：ヒートゲージ最大
+	private bool		m_ChargeFrag;	// フラグ：再チャージフラグ
 
 	//=========================================================================
 	// 初期化処理
 	//=========================================================================
 	void Start () {
 		
-		// コンポーネント取得：画像
-		m_GaugeImage = m_GaugeObj.GetComponent<Image>();
+		// 人権初期化
+		m_Value = 1.0f;
+		m_GaugeImage.fillAmount = m_Value;
 
-		//// 人権初期化
-		//m_Value = 1.0f;
-		//m_GaugeImage.fillAmount = m_Value;
-
-		//// フラグ：オン
-		//m_MaxFrag = true;
+		// フラグ：オン
+		m_MaxFrag = true;
+		m_ChargeFrag = false;
+		
 	}
-	
+
 	//=========================================================================
 	// 更新処理
 	//=========================================================================
 	void FixedUpdate () {
 		
-		// ヒートゲージが最大でない場合
-		if(!m_MaxFrag)
+		// チャージ可能
+		if(m_ChargeFrag)
 		{
-			m_Value += 1.0f / ( m_TimeToMax * 60 );
+			// チャージ
+			m_Value += 1.0f / (m_TimeToMax * 60);
 			m_GaugeImage.fillAmount = m_Value;
 
+			// 最大値になった場合
 			if(m_Value >= 1)
 			{
 				m_Value = 1;
 				m_MaxFrag = true;
+				m_ChargeFrag = false;
 			}
 		}
 	}
@@ -61,7 +63,7 @@ public class UIHeater : MonoBehaviour {
 	//=========================================================================
 	// 増減処理
 	//=========================================================================
-	void AddValue(float inAdd)
+	public void AddValue(float inAdd)
 	{
 		// 加算
 		m_Value += inAdd;
@@ -75,6 +77,7 @@ public class UIHeater : MonoBehaviour {
 		else if(m_Value <= 0)
 		{
 			m_Value = 0;
+			m_MaxFrag = false;
 		}
 
 		// アニメーション：ゲージ増減
@@ -86,7 +89,8 @@ public class UIHeater : MonoBehaviour {
 		).OnComplete(
 			()=>
 			{
-				if(m_Value <= 0) m_MaxFrag = false;
+				// チャージ可能に
+				if(m_GaugeImage.fillAmount <= 0) m_ChargeFrag = true;
 			}
 		);
 
