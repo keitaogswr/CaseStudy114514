@@ -195,10 +195,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 1911444805983534, guid: 21874e4fe21ea3042ab3d98f3066d45c, type: 2}
-      propertyPath: m_Name
-      value: Main Camera
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21874e4fe21ea3042ab3d98f3066d45c, type: 2}
   m_IsPrefabParent: 0
@@ -335,8 +331,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1457372283}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.16, y: -4.35, z: 0}
-  m_LocalScale: {x: 7.6298385, y: 7.6298385, z: 7.6298385}
+  m_LocalPosition: {x: 0.48, y: -4.99, z: 0}
+  m_LocalScale: {x: 15.633042, y: 15.633042, z: 15.633042}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -352,4 +348,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7352d9e45424e2e48849170ffae5a2d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 114619092829173622, guid: b87772f18e2a454409f3f8ab9af8a9e4, type: 2}
+  bullet: {fileID: 114918978138118530, guid: 20672640fc326fd4dadabe792f94163c, type: 2}

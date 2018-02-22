@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    public PlayerBullet bullet;
+    public Bullet bullet;
 
 	// Use this for initialization
 	void Start () {
@@ -15,9 +15,9 @@ public class Player : MonoBehaviour {
 	void FixedUpdate () {
 		if(Input.GetKeyDown(KeyCode.Space))
         {
-            PlayerBullet obj = Instantiate(bullet);
+            Bullet obj = Instantiate(bullet);
 
-            obj.Shoot(gameObject);
+            obj.Shoot(gameObject.transform.up, gameObject);
         }
 	}
 }
