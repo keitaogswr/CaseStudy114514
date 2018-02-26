@@ -48,8 +48,9 @@ public class EnemyPatternDiffusion : EnemyPattern
 {
     public override void Init(EnemyController enemy)
     {
-        enemy.GetComponent<RectTransform>().DOLocalMoveX(-2, 1);
-        
+
+        GameObject obj = Object.Instantiate(enemy.Metamorphose, enemy.transform);
+        SoundManager.PlaySE(5, 0.2f);
     }
 
     public override void Update(EnemyController enemy)
@@ -69,6 +70,8 @@ public class EnemyPatternDiffusion : EnemyPattern
 
     public override void Destroy(EnemyController enemy)
     {
+        Object.Instantiate(enemy.Explosion, new Vector3(enemy.transform.position.x, enemy.transform.position.y, 0), Quaternion.identity);
+        SoundManager.PlaySE(6, 0.2f);
         Object.Destroy(enemy.gameObject);
     }
 }

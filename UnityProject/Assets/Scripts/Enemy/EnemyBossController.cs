@@ -7,6 +7,8 @@ public class EnemyBossController : EnemyController
 {
     [SerializeField]
     private float bossStartMoveTime = 4.0f;
+    [SerializeField]
+    private GameObject darkAura;
 
     // Use this for initialization
     void Start ()
@@ -16,6 +18,7 @@ public class EnemyBossController : EnemyController
         enemyPattern = new EnemyBossPatternStart();
         enemyPattern.Init(this);
         bulletPattern = new EnemyBulletPatternNone();
+        Instantiate(darkAura, transform);
     }
 
     // Update is called once per frame

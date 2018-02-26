@@ -25,6 +25,10 @@ public class EnemyController : MonoBehaviour {
     [SerializeField]
     protected Sprite diffusionSprite;                   // 拡散時テクスチャ
     private Player player;
+    [SerializeField]
+    private GameObject explosion;
+    [SerializeField]
+    private GameObject metamorphose;
 
     // Use this for initialization
     void Start()
@@ -90,4 +94,6 @@ public class EnemyController : MonoBehaviour {
     public float BulletInterval { get { return bulletInterval; } set { bulletInterval = value; } }
     public Sprite DiffusionSprite { get { return DiffusionSprite; } set { DiffusionSprite = value; } }
     public float NextPatternTime { get { return nextPatternTime; } set { nextPatternTime = value; } }
+    public GameObject Explosion { get { return explosion; } }
+    public GameObject Metamorphose { get { return metamorphose; } }
 }

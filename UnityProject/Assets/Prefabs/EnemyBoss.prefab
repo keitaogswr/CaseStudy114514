@@ -104,8 +104,11 @@ MonoBehaviour:
   bulletInterval: 2.5
   normalSprite: {fileID: 21300000, guid: 7931647feb4d58c41905d5129b489d72, type: 3}
   diffusionSprite: {fileID: 21300000, guid: 7931647feb4d58c41905d5129b489d72, type: 3}
-  player: {fileID: 114077362904243072, guid: 10d2662bbcb45de42aa121d82fa87384, type: 2}
+  explosion: {fileID: 1649327083324632, guid: 0caee108d73928d4095b33b45dd93642, type: 2}
+  metamorphose: {fileID: 1629414552509960, guid: cb5020180d50bed46a19fc756f2d6837,
+    type: 2}
   bossStartMoveTime: 4
+  darkAura: {fileID: 1061627154871736, guid: 85e227fc679178b459147ad57ca63c39, type: 2}
 --- !u!212 &212012404320174630
 SpriteRenderer:
   m_ObjectHideFlags: 1
