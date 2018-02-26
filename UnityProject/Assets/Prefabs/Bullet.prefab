@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 4192371099843486}
   - component: {fileID: 198183919594794266}
   - component: {fileID: 199968230028459282}
+  - component: {fileID: 114840554260704768}
   m_Layer: 0
   m_Name: BulletFire
   m_TagString: Untagged
@@ -134,6 +135,17 @@ MonoBehaviour:
   power: 1000
   life: 1.5
   effect: {fileID: 198183919594794266}
+--- !u!114 &114840554260704768
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1581422515316248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa3300b48e741ef458133900165d178d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198183919594794266
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -194,7 +206,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1559660616
+  randomSeed: 344578303
   InitialModule:
     serializedVersion: 3
     enabled: 1

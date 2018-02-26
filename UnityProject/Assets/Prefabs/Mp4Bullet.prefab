@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 4462509960348910}
   - component: {fileID: 198252337492708112}
   - component: {fileID: 199703632207485292}
+  - component: {fileID: 114357146253054946}
   m_Layer: 0
   m_Name: EnemyBulletFire
   m_TagString: Untagged
@@ -119,6 +120,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.02, y: 1.15}
   m_EdgeRadius: 0
+--- !u!114 &114357146253054946
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1554789072305670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa3300b48e741ef458133900165d178d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114918978138118530
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -195,7 +207,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -866573755
+  randomSeed: -256859010
   InitialModule:
     serializedVersion: 3
     enabled: 1

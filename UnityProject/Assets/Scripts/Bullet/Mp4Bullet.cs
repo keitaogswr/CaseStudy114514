@@ -21,8 +21,7 @@ public class Mp4Bullet : Bullet {
         //一定時間たったら戻る
         if (moveTime >= life)
         {
-            var e = effect.emission;
-            e.enabled = false;
+            effect.Stop();
             gameObject.transform.DetachChildren();
             Destroy(gameObject);
         }
@@ -40,8 +39,7 @@ public class Mp4Bullet : Bullet {
         // 衝突：敵
         if (layerName == "Enemy")
         {
-            var e = effect.emission;
-            e.enabled = false;
+            effect.Stop();
             gameObject.transform.DetachChildren();
             Destroy(gameObject);
         }
