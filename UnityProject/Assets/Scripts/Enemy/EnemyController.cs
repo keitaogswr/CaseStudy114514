@@ -66,6 +66,12 @@ public class EnemyController : MonoBehaviour {
             enemyPattern.ChangePattern(this);
             player.AddDignity(-0.05f);
         }
+        // 衝突：プレイヤー弾
+        if(layerName == "PlayerBullet")
+        {
+            // 破壊
+            enemyPattern.Destroy(this);
+        }
     }
 
     public void ChangeSpriteDiffusion()

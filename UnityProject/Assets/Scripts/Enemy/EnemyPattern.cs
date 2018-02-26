@@ -9,6 +9,7 @@ public class EnemyPattern
     public virtual void Init(EnemyController enemy) { }             // 初期化
     public virtual void Update(EnemyController enemy) { }           // 更新
     public virtual void ChangePattern(EnemyController enemy) { }    // 状態遷移
+    public virtual void Destroy(EnemyController enemy) { }          // 破壊
 }
 
 // エネミーが生成位置から反対側まで移動する
@@ -36,7 +37,7 @@ public class EnemyPatternStart : EnemyPattern
     public override void ChangePattern(EnemyController enemy)
     {
         enemy.ChangeEnemyPattern(new EnemyPatternDiffusion());
-        enemy.ChangeEnemyBulletPattern(new EnemyBulletPatternFirst());
+        enemy.ChangeEnemyBulletPattern(new EnemyBulletPatternNormal());
         enemy.EnemyPattern.Init(enemy);
         enemy.ChangeSpriteDiffusion();
     }
@@ -64,6 +65,11 @@ public class EnemyPatternDiffusion : EnemyPattern
     {
         //enemy.ChangeEnemyPattern(new EnemyPatternNormal());
         enemy.EnemyPattern.Init(enemy);
+    }
+
+    public override void Destroy(EnemyController enemy)
+    {
+        Object.Destroy(enemy.gameObject);
     }
 }
 
