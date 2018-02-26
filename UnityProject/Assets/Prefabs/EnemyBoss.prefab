@@ -99,11 +99,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d27db384f9ffc4fb9a95b45832e34f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMoveTime: 2
+  startMoveTime: 4
   bullet: {fileID: 114918978138118530, guid: 20672640fc326fd4dadabe792f94163c, type: 2}
   bulletInterval: 2.5
   normalSprite: {fileID: 21300000, guid: 7931647feb4d58c41905d5129b489d72, type: 3}
   diffusionSprite: {fileID: 21300000, guid: 7931647feb4d58c41905d5129b489d72, type: 3}
+  player: {fileID: 114077362904243072, guid: 10d2662bbcb45de42aa121d82fa87384, type: 2}
   bossStartMoveTime: 4
 --- !u!212 &212012404320174630
 SpriteRenderer:

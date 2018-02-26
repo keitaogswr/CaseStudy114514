@@ -154,7 +154,7 @@ public class Player : MonoBehaviour {
 	//=========================================================================
 	// 衝突処理
 	//=========================================================================
-	private void OnCollisionEnter2D(Collision2D collision)
+	void OnTriggerEnter2D(Collider2D collision)
 	{
 		// 衝突：MP4弾
 		if(collision.gameObject.CompareTag("MP4Bullet"))

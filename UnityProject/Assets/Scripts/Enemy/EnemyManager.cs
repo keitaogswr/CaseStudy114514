@@ -14,6 +14,8 @@ public class EnemyManager : MonoBehaviour {
     private float time = 0;
     [SerializeField]
     private int intervalTime = 5;
+    [SerializeField]
+    private Player player;
 
     // Use this for initialization
     void Start () {
@@ -23,7 +25,7 @@ public class EnemyManager : MonoBehaviour {
         positionList.Add(new Vector3(-18.0f, -1.0f, 0.0f));
         positionList.Add(new Vector3(-15.0f, -5.0f, 0.0f));
 
-        Create();
+        NormalEnemyCreate();
 	}
 	
 	// Update is called once per frame
@@ -33,11 +35,11 @@ public class EnemyManager : MonoBehaviour {
         if(time >= intervalTime)
         {
             time = 0;
-            Create();
+            NormalEnemyCreate();
         }
 	}
 
-    void Create()
+    void NormalEnemyCreate()
     {
         for (int i = 0; i < enemyNum; i++)
         {

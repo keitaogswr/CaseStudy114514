@@ -22,6 +22,7 @@ public class EnemyController : MonoBehaviour {
     protected Sprite normalSprite;                      // 通常時テクスチャ
     [SerializeField]
     protected Sprite diffusionSprite;                   // 拡散時テクスチャ
+    Player player;
 
     // Use this for initialization
     void Start()
@@ -32,10 +33,11 @@ public class EnemyController : MonoBehaviour {
         enemyPattern = new EnemyPatternStart();
         enemyPattern.Init(this);
         bulletPattern = new EnemyBulletPatternNone();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         enemyPattern.Update(this);
         bulletPattern.Update(this);
@@ -62,6 +64,7 @@ public class EnemyController : MonoBehaviour {
         {
             // 行動変化
             enemyPattern.ChangePattern(this);
+            player.AddDignity(-0.05f);
         }
     }
 

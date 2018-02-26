@@ -106,3 +106,43 @@ public class EnemyBossPatternDiffusion : EnemyPattern
     {
     }
 }
+
+// 拡散オブジェの初期移動パターン
+public class EnemyDiffusionerPatternStart : EnemyPattern
+{
+    public override void Init(EnemyController enemy)
+    {
+        // 初期位置に移動
+        enemy.transform.DOMove(enemy.NextPoint, enemy.StartMoveTime).OnComplete(() => { ChangePattern(enemy); });
+    }
+
+    public override void ChangePattern(EnemyController enemy)
+    {
+        enemy.ChangeEnemyPattern(new EnemyDiffusionerPatternDiffusion());
+        enemy.ChangeEnemyBulletPattern(new EnemyBulletPatternFirst());
+        enemy.EnemyPattern.Init(enemy);
+    }
+}
+
+// ボスの拡散行動
+public class EnemyDiffusionerPatternDiffusion : EnemyPattern
+{
+    public override void Init(EnemyController enemy)
+    {
+        // 反復運動
+        Sequence seq = DOTween.Sequence();
+        seq.Append(enemy.transform.DOLocalMoveX(-2, 0.5f).SetRelative().SetEase(Ease.Linear));
+        seq.Append(enemy.transform.DOLocalMoveX(4, 1).SetRelative().SetEase(Ease.Linear));
+        seq.Append(enemy.transform.DOLocalMoveX(-2, 0.5f).SetRelative().SetEase(Ease.Linear));
+        seq.SetLoops(-1);
+    }
+
+    public override void Update(EnemyController enemy)
+    {
+
+    }
+
+    public override void ChangePattern(EnemyController enemy)
+    {
+    }
+}

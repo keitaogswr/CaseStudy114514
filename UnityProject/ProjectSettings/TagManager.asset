@@ -8,6 +8,7 @@ TagManager:
   - MP4Bullet
   - Enemy
   - Boss
+  - Diffusioner
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - MP4Bullet
   - Background
   - Boss
-  - 
+  - Diffusioner
   - 
   - 
   - 
