@@ -11,6 +11,8 @@ public class EnemyController : MonoBehaviour {
 
     [SerializeField]
     protected float startMoveTime = 2.0f;               // 初期位置に移動するまでの時間
+
+    protected float nextPatternTime = 0;
     [SerializeField]
     protected Bullet bullet;                            // 弾
     protected float bulletTime;                         // 弾の発射までの残り時間
@@ -22,7 +24,7 @@ public class EnemyController : MonoBehaviour {
     protected Sprite normalSprite;                      // 通常時テクスチャ
     [SerializeField]
     protected Sprite diffusionSprite;                   // 拡散時テクスチャ
-    Player player;
+    private Player player;
 
     // Use this for initialization
     void Start()
@@ -87,4 +89,5 @@ public class EnemyController : MonoBehaviour {
     public float BulletTime { get { return bulletTime; } set { bulletTime = value; } }
     public float BulletInterval { get { return bulletInterval; } set { bulletInterval = value; } }
     public Sprite DiffusionSprite { get { return DiffusionSprite; } set { DiffusionSprite = value; } }
+    public float NextPatternTime { get { return nextPatternTime; } set { nextPatternTime = value; } }
 }

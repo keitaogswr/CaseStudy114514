@@ -15,7 +15,9 @@ public class EnemyManager : MonoBehaviour {
     [SerializeField]
     private int intervalTime = 5;
     [SerializeField]
-    private Player player;
+    private GameObject enemyBoss;
+    private float bossTime;
+    private bool bCreateBoss = true;
 
     // Use this for initialization
     void Start () {
@@ -31,11 +33,18 @@ public class EnemyManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         time += Time.deltaTime;
+        bossTime += Time.deltaTime;
 
-        if(time >= intervalTime)
+        if (time >= intervalTime)
         {
             time = 0;
             NormalEnemyCreate();
+        }
+
+        if(bossTime >= 20 && bCreateBoss)
+        {
+            bCreateBoss = false;
+            Instantiate(enemyBoss);
         }
 	}
 

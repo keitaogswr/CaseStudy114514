@@ -55,3 +55,4 @@ MonoBehaviour:
   enemyObject: {fileID: 114084811118835804, guid: 423e171ee4484ae4ba7e055534cd0298,
     type: 2}
   intervalTime: 5
+  enemyBoss: {fileID: 1734554731488834, guid: aed9579dccfbd1745a3a8b0fdc7e7fb8, type: 2}

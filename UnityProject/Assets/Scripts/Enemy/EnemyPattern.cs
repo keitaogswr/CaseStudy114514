@@ -130,9 +130,10 @@ public class EnemyDiffusionerPatternStart : EnemyPattern
     }
 }
 
-// ボスの拡散行動
+// 拡散オブジェの拡散行動
 public class EnemyDiffusionerPatternDiffusion : EnemyPattern
 {
+    private float nextPatternTime = 15;
     public override void Init(EnemyController enemy)
     {
         // 反復運動
@@ -145,10 +146,35 @@ public class EnemyDiffusionerPatternDiffusion : EnemyPattern
 
     public override void Update(EnemyController enemy)
     {
+        enemy.NextPatternTime += Time.deltaTime;
 
+        if(enemy.NextPatternTime > nextPatternTime)
+        {
+            enemy.NextPatternTime = 0;
+            ChangePattern(enemy);
+        }
     }
 
     public override void ChangePattern(EnemyController enemy)
     {
+        enemy.ChangeEnemyPattern(new EnemyDiffusionerPatternEnd());
+        enemy.ChangeEnemyBulletPattern(new EnemyBulletPatternNone());
+        enemy.EnemyPattern.Init(enemy);
+    }
+}
+
+// 拡散オブジェの拡散行動
+public class EnemyDiffusionerPatternEnd : EnemyPattern
+{
+    private float nextPatternTime = 15;
+    public override void Init(EnemyController enemy)
+    {
+        // 初期位置に移動
+        enemy.transform.DOMove(new Vector3(0, 15, 0), enemy.StartMoveTime).OnComplete(() => { ChangePattern(enemy); });
+    }
+
+    public override void ChangePattern(EnemyController enemy)
+    {
+        Object.Destroy(enemy.gameObject);
     }
 }
