@@ -100,7 +100,7 @@ public class SoundManager : MonoBehaviour{
     {
     }
     //BGM再生
-    public static void PlayBGM(int index)
+    public static void PlayBGM(int index, float volume = 1.0f)
     {
         //指定したインデックスが範囲外の場合は何もしない
         if(index < 0 || index >= BGM.Length)
@@ -116,6 +116,7 @@ public class SoundManager : MonoBehaviour{
 
         BGMSource.Stop();
         BGMSource.clip = BGM[index];
+		BGMSource.volume = volume;
         BGMSource.Play();
     }
 
@@ -166,7 +167,7 @@ public class SoundManager : MonoBehaviour{
     }
 
     //効果音再生
-    public static void PlaySE(int index, bool isLoop = false)
+    public static void PlaySE(int index, float volume = 1.0f, bool isLoop = false)
     {
         //指定したインデックスが範囲外の場合は何もしない
         if (index < 0 || index >= SE.Length)
@@ -179,7 +180,9 @@ public class SoundManager : MonoBehaviour{
         {
             if(!source.isPlaying)
             {
-                source.clip = SE[index];               
+                source.clip = SE[index];
+                source.loop = isLoop;
+				source.volume = volume;
                 source.Play();
                 return;
             }
@@ -187,7 +190,7 @@ public class SoundManager : MonoBehaviour{
     }
 
     //効果音を鳴らす関数。1つ目の引数は鳴らしたい音声ファイル名、2つ目はループするかどうか。デフォルトでは無効になっている
-    public static int PlaySE(string fileName,bool isLoop = false)
+    public static int PlaySE(string fileName, float volume = 1.0f, bool isLoop = false)
     {
         if (SESources.Length == 0)
         {
@@ -210,6 +213,7 @@ public class SoundManager : MonoBehaviour{
             {
                 source.clip = SE[index];
                 source.loop = isLoop;
+				source.volume = volume;
                 source.Play();
                 return use;
             }

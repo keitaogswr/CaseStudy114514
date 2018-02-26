@@ -40,13 +40,16 @@ public class Player : MonoBehaviour {
 
 		// ヒート
 		m_Heat = 1.0f;
-		m_HeatCastTime = 1.5f;
+		m_HeatCastTime = 1.2f;
 		// 人権
 		m_Dignity = 1.0f;
 		
 		// フラグ：オフ
 		m_LowMoveFrag = false;
 		m_ChargeFrag = false;
+
+		// 仮：必ず解除
+		//SoundManager.PlayBGM(0, 0.1f);
 	}
 	
 	//=========================================================================
@@ -126,6 +129,9 @@ public class Player : MonoBehaviour {
 
 				// ヒートゲージ初期化
 				AddHeat(-1.0f);
+
+				// SE再生：弾発射
+				SoundManager.PlaySE(0, 0.5f);
 			}
 		}
 	}
@@ -161,6 +167,9 @@ public class Player : MonoBehaviour {
 		{
 			// 人権回復
 			AddDignity(0.05f);
+
+			// SE再生：回復
+			SoundManager.PlaySE(3);
 		}
 	}
 
@@ -210,6 +219,9 @@ public class Player : MonoBehaviour {
 			{
 				// チャージ可能に
 				if(m_Heat <= 0) m_ChargeFrag = true;
+
+				// チャージSE再生
+				SoundManager.PlaySE(1);
 			}
 		);
 	}
