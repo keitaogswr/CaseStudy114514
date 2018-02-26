@@ -52,4 +52,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyNum: 4
-  enemyObject: {fileID: 0}
+  enemyObject: {fileID: 114084811118835804, guid: 423e171ee4484ae4ba7e055534cd0298,
+    type: 2}
+  intervalTime: 5

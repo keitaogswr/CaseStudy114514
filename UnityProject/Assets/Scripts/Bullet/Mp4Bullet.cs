@@ -21,6 +21,7 @@ public class Mp4Bullet : Bullet {
         //一定時間たったら戻る
         if (moveTime >= life)
         {
+            EffectDestroy();
             Destroy(gameObject);
         }
 
@@ -28,5 +29,32 @@ public class Mp4Bullet : Bullet {
         {
             colliderMp4.enabled = true;
         }
+    }
+
+    // エネミーの当たり判定
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        string layerName = LayerMask.LayerToName(collider.gameObject.layer);
+        // 衝突：敵
+        if (layerName == "Enemy")
+        {
+            EffectDestroy();
+            Destroy(gameObject);
+            Debug.Log("MP4Bullet:Enemy Hit");
+        }
+
+        // 衝突：プレイヤー
+        if (layerName == "Player")
+        {
+            EffectDestroy();
+            Destroy(gameObject);
+            Debug.Log("MP4Bullet:Player Hit");
+        }
+    }
+
+    private void EffectDestroy()
+    {
+        effect.Stop();
+        gameObject.transform.DetachChildren();
     }
 }
