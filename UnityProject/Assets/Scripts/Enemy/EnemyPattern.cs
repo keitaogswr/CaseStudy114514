@@ -24,10 +24,21 @@ public class EnemyPatternStart : EnemyPattern
         if (enemy.transform.position.x < 0) rigidbody.velocity = new Vector2(2, 0);
     }
 
+    public override void Update(EnemyController enemy)
+    {
+        // 画面外になったら消滅
+        if (enemy.transform.position.x < -20 || enemy.transform.position.x > 20)
+        {
+            Object.Destroy(enemy.gameObject);
+        }
+    }
+
     public override void ChangePattern(EnemyController enemy)
     {
-        //enemy.ChangeEnemyPattern(new EnemyPatternNormal());
+        enemy.ChangeEnemyPattern(new EnemyPatternDiffusion());
+        enemy.ChangeEnemyBulletPattern(new EnemyBulletPatternFirst());
         enemy.EnemyPattern.Init(enemy);
+        enemy.ChangeSpriteDiffusion();
     }
 }
 
@@ -37,11 +48,16 @@ public class EnemyPatternDiffusion : EnemyPattern
     public override void Init(EnemyController enemy)
     {
         enemy.GetComponent<RectTransform>().DOLocalMoveX(-2, 1);
+        
     }
 
     public override void Update(EnemyController enemy)
     {
-        
+        // 画面外になったら消滅
+        if (enemy.transform.position.x < -20 || enemy.transform.position.x > 20)
+        {
+            Object.Destroy(enemy.gameObject);
+        }
     }
 
     public override void ChangePattern(EnemyController enemy)
@@ -63,6 +79,7 @@ public class EnemyBossPatternStart : EnemyPattern
     public override void ChangePattern(EnemyController enemy)
     {
         enemy.ChangeEnemyPattern(new EnemyBossPatternDiffusion());
+        enemy.ChangeEnemyBulletPattern(new EnemyBulletPatternFirst());
         enemy.EnemyPattern.Init(enemy);
     }
 }
@@ -80,8 +97,12 @@ public class EnemyBossPatternDiffusion : EnemyPattern
         seq.SetLoops(-1);
     }
 
+    public override void Update(EnemyController enemy)
+    {
+
+    }
+
     public override void ChangePattern(EnemyController enemy)
     {
-        enemy.EnemyPattern.Init(enemy);
     }
 }

@@ -18,8 +18,21 @@ public class EnemyBulletPatternNone : EnemyBulletPattern
 
 public class EnemyBulletPatternFirst : EnemyBulletPattern
 {
+    
     public override void Update(EnemyController enemy)
     {
-        // 弾の発射
+        enemy.BulletTime += Time.deltaTime;
+
+        if(enemy.BulletTime >= enemy.BulletInterval)
+        {
+            enemy.BulletTime = 0;
+            // 弾の発射
+            Bullet bullet = Object.Instantiate(enemy.Bullet);
+            bullet.Shoot(new Vector2(0, -1), enemy.gameObject);
+            bullet = Object.Instantiate(enemy.Bullet);
+            bullet.Shoot(new Vector2(0.75f, -0.75f), enemy.gameObject);
+            bullet = Object.Instantiate(enemy.Bullet);
+            bullet.Shoot(new Vector2(-0.75f, -0.75f), enemy.gameObject);
+        }
     }
 }

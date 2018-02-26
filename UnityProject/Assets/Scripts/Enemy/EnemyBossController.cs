@@ -21,6 +21,7 @@ public class EnemyBossController : EnemyController
     // Update is called once per frame
     void Update()
     {
-        //gameObject.transform.DOMove(nextPoint, startMoveTime);
+        enemyPattern.Update(this);
+        bulletPattern.Update(this);
     }
 }
