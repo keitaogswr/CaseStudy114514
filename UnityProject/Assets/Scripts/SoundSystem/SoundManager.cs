@@ -378,7 +378,7 @@ public class SoundManager : MonoBehaviour{
     {
         BGM = Resources.LoadAll<AudioClip>("Sounds/BGM/");
         SE = Resources.LoadAll<AudioClip>("Sounds/SE/");
-        Voice = Resources.LoadAll<AudioClip>("Sounds/Voice/");
+        Voice = Resources.LoadAll<AudioClip>("Sounds/VOICE/");
         GetFileName();
     }
 
