@@ -20,6 +20,7 @@ public class Player : MonoBehaviour {
 
 	// public変数
 	public Bullet			m_BulletPrefab;			// プレハブ：弾
+	public GameObject		m_HealPrefab;			// プレハブ：回復エフェクト
 
 	// private変数
 	[SerializeField]
@@ -165,6 +166,9 @@ public class Player : MonoBehaviour {
 		// 衝突：MP4弾
 		if(collision.gameObject.CompareTag("MP4Bullet"))
 		{
+			// エフェクト生成：回復
+			Instantiate(m_HealPrefab, gameObject.transform);
+
 			// 人権回復
 			AddDignity(0.05f);
 
