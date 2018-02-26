@@ -10,6 +10,8 @@ public class Bullet : MonoBehaviour {
 
 	protected float moveTime = 0.0f;         //弾が発射されてから戻るまでの秒数を計測する変数
 	protected Vector2 moveVec;             //弾を発射したオブジェクト
+    [SerializeField]
+    protected ParticleSystem effect;
 
 	// Use this for initialization
 	void Start () {

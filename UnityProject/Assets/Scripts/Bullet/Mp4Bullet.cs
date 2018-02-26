@@ -21,12 +21,29 @@ public class Mp4Bullet : Bullet {
         //一定時間たったら戻る
         if (moveTime >= life)
         {
+            var e = effect.emission;
+            e.enabled = false;
+            gameObject.transform.DetachChildren();
             Destroy(gameObject);
         }
 
         if(collisionTime >= noColisionTime)
         {
             colliderMp4.enabled = true;
+        }
+    }
+
+    // エネミーの当たり判定
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        string layerName = LayerMask.LayerToName(collider.gameObject.layer);
+        // 衝突：敵
+        if (layerName == "Enemy")
+        {
+            var e = effect.emission;
+            e.enabled = false;
+            gameObject.transform.DetachChildren();
+            Destroy(gameObject);
         }
     }
 }

@@ -62,7 +62,6 @@ public class EnemyController : MonoBehaviour {
         {
             // 行動変化
             enemyPattern.ChangePattern(this);
-            Destroy(collider.gameObject);
         }
     }
 
