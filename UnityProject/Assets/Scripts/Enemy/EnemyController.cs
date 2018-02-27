@@ -70,7 +70,6 @@ public class EnemyController : MonoBehaviour {
         {
             // 行動変化
             enemyPattern.ChangePattern(this);
-            player.AddDignity(-0.05f);
         }
         // 衝突：プレイヤー弾
         if(layerName == "PlayerBullet")
@@ -96,4 +95,5 @@ public class EnemyController : MonoBehaviour {
     public float NextPatternTime { get { return nextPatternTime; } set { nextPatternTime = value; } }
     public GameObject Explosion { get { return explosion; } }
     public GameObject Metamorphose { get { return metamorphose; } }
+    public Player Player { get { return player; } }
 }
