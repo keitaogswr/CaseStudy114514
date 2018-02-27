@@ -108,11 +108,11 @@ public class EnemyBossPatternDiffusion : EnemyPattern
     public override void Init(EnemyController enemy)
     {
         // 反復運動
-        //Sequence seq = DOTween.Sequence();
-        //seq.Append(enemy.transform.DOLocalMoveX(-2, 0.5f).SetRelative().SetEase(Ease.Linear));
-        //seq.Append(enemy.transform.DOLocalMoveX(4, 1).SetRelative().SetEase(Ease.Linear));
-        //seq.Append(enemy.transform.DOLocalMoveX(-2, 0.5f).SetRelative().SetEase(Ease.Linear));
-        //seq.SetLoops(-1);
+        Sequence seq = DOTween.Sequence();
+        seq.Append(enemy.transform.DOLocalMoveY(-1, 0.5f).SetRelative().SetEase(Ease.Linear));
+        seq.Append(enemy.transform.DOLocalMoveY(2, 1).SetRelative().SetEase(Ease.Linear));
+        seq.Append(enemy.transform.DOLocalMoveY(-1, 0.5f).SetRelative().SetEase(Ease.Linear));
+        seq.SetLoops(-1);
     }
 
     public override void Update(EnemyController enemy)

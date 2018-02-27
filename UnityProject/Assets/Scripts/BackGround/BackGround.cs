@@ -40,7 +40,7 @@ public class BackGround : MonoBehaviour {
                     if(countWaitTime >= waitTime)
                     {
                         render.material = finalFloorMaterial;
-                        SoundManager.PlayBGM("yuusaku");
+                        //SoundManager.PlayBGM("yuusaku");
                     }                                    
                 }
             }
