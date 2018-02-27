@@ -305,6 +305,11 @@ Prefab:
       propertyPath: m_Name
       value: BackGround
       objectReference: {fileID: 0}
+    - target: {fileID: 114028275914734152, guid: 77a9d49a1972de24782656d5bb3e8d29,
+        type: 2}
+      propertyPath: waitTime
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77a9d49a1972de24782656d5bb3e8d29, type: 2}
   m_IsPrefabParent: 0
@@ -360,6 +365,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 10d2662bbcb45de42aa121d82fa87384, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &535089995 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114028275914734152, guid: 77a9d49a1972de24782656d5bb3e8d29,
+    type: 2}
+  m_PrefabInternal: {fileID: 451397611}
+  m_Script: {fileID: 11500000, guid: d3c8441af2f9b5042bf3c95cf77eb600, type: 3}
 --- !u!1001 &537976714
 Prefab:
   m_ObjectHideFlags: 0
@@ -704,6 +715,11 @@ Prefab:
       value: 
       objectReference: {fileID: 114084811118835804, guid: 423e171ee4484ae4ba7e055534cd0298,
         type: 2}
+    - target: {fileID: 114504026493362688, guid: 9bd4376c26b7a534c84de8fb384b2ba9,
+        type: 2}
+      propertyPath: backGround
+      value: 
+      objectReference: {fileID: 535089995}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9bd4376c26b7a534c84de8fb384b2ba9, type: 2}
   m_IsPrefabParent: 0

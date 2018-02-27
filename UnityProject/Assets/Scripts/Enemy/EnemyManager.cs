@@ -18,6 +18,9 @@ public class EnemyManager : MonoBehaviour {
     private GameObject enemyBoss;
     private float bossTime;
     private bool bCreateBoss = true;
+    [SerializeField]
+    private BackGround backGround;
+    private bool bCreate = true;
 
     // Use this for initialization
     void Start () {
@@ -35,16 +38,26 @@ public class EnemyManager : MonoBehaviour {
         time += Time.deltaTime;
         bossTime += Time.deltaTime;
 
-        if (time >= intervalTime)
+        if (time >= intervalTime && bCreate)
         {
             time = 0;
             NormalEnemyCreate();
+        }
+
+        if(bossTime >= 19)
+        {
+            backGround.GoLastBattle();
         }
 
         if(bossTime >= 20 && bCreateBoss)
         {
             bCreateBoss = false;
             Instantiate(enemyBoss);
+        }
+
+        if(bossTime >= 40)
+        {
+            bCreate = false;
         }
 	}
 

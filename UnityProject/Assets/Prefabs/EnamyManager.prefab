@@ -56,3 +56,4 @@ MonoBehaviour:
     type: 2}
   intervalTime: 5
   enemyBoss: {fileID: 1734554731488834, guid: aed9579dccfbd1745a3a8b0fdc7e7fb8, type: 2}
+  backGround: {fileID: 0}
