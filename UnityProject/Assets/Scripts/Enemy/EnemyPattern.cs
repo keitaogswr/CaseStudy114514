@@ -41,6 +41,13 @@ public class EnemyPatternStart : EnemyPattern
         enemy.EnemyPattern.Init(enemy);
         enemy.ChangeSpriteDiffusion();
     }
+
+    public override void Destroy(EnemyController enemy)
+    {
+        Object.Instantiate(enemy.Explosion, new Vector3(enemy.transform.position.x, enemy.transform.position.y, 0), Quaternion.identity);
+        SoundManager.PlaySE(6, 0.2f);
+        Object.Destroy(enemy.gameObject);
+    }
 }
 
 // エネミーがMP4弾を受けたらMP4拡散状態に
@@ -48,8 +55,11 @@ public class EnemyPatternDiffusion : EnemyPattern
 {
     public override void Init(EnemyController enemy)
     {
-        enemy.GetComponent<RectTransform>().DOLocalMoveX(-2, 1);
-        
+
+        GameObject obj = Object.Instantiate(enemy.Metamorphose, enemy.transform);
+        SoundManager.PlaySE(5, 0.2f);
+
+        enemy.Player.AddDignity(-0.05f);
     }
 
     public override void Update(EnemyController enemy)
@@ -64,11 +74,13 @@ public class EnemyPatternDiffusion : EnemyPattern
     public override void ChangePattern(EnemyController enemy)
     {
         //enemy.ChangeEnemyPattern(new EnemyPatternNormal());
-        enemy.EnemyPattern.Init(enemy);
+        //enemy.EnemyPattern.Init(enemy);
     }
 
     public override void Destroy(EnemyController enemy)
     {
+        Object.Instantiate(enemy.Explosion, new Vector3(enemy.transform.position.x, enemy.transform.position.y, 0), Quaternion.identity);
+        SoundManager.PlaySE(6, 0.2f);
         Object.Destroy(enemy.gameObject);
     }
 }

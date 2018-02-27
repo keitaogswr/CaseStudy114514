@@ -50,7 +50,7 @@ public class Player : MonoBehaviour {
 		m_ChargeFrag = false;
 
 		// 仮：必ず解除
-		//SoundManager.PlayBGM(0, 0.1f);
+		SoundManager.PlayBGM(0, 0.1f);
 	}
 	
 	//=========================================================================
